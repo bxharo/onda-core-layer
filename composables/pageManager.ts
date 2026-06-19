@@ -16,16 +16,8 @@ export async function usePageManager(payload: { slug: string, type: string, type
     }
   }
 
-  const { error } = await useAsyncData(
-    `content-${route.fullPath}`,
-    async () => {
-      await fetchData()
-      return store.pageData
-    }
-  )
-
   if (import.meta.client) {
-    watch(
+    const stopWatch = watch(
       () => route.params,
       async (newParams) => {
         let shouldFetch = false
@@ -47,7 +39,19 @@ export async function usePageManager(payload: { slug: string, type: string, type
       },
       { deep: true }
     )
+
+    onUnmounted(() => {
+      stopWatch()
+    })
   }
+
+  const { error } = await useAsyncData(
+    `content-${route.fullPath}`,
+    async () => {
+      await fetchData()
+      return store.pageData
+    }
+  )
 
   return { fetchData, error }
 }
