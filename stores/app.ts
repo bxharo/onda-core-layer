@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { MenuItem } from '~/types/menu'
+import type { MenuItem } from '../types/menu'
 
 interface Loader {
   status: boolean
