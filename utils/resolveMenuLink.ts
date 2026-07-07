@@ -1,4 +1,4 @@
-import type { MenuItem } from '~/types/menu'
+import type { MenuItem } from '../types/menu'
 
 export function resolveMenuLink(item: MenuItem): string {
   const { type, slug, external_url, url } = item
