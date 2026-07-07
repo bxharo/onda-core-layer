@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Content } from '~/types/content'
+import type { Content } from '../../types/content'
 
 defineProps<{
   content?: Content | null | any
